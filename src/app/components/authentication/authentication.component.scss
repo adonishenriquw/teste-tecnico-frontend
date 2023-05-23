@@ -1,0 +1,24 @@
+.container{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #212121;
+    mat-card{
+      width: 300px;
+      mat-card-header{
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: medium;
+        font-weight: 600;
+        border-radius: 5px;
+      }
+      mat-card-actions{
+        padding: 0;
+      }
+    }
+}
+.input-key{
+  width: 100%;
+margin-top: 20px;
+}

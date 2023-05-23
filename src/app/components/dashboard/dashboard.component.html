@@ -1,1 +1,58 @@
-<p>dashboard works!</p>
+<div class="container">
+  <mat-form-field>
+    <mat-label>Countries</mat-label>
+    <mat-select [(value)]="selectedValue">
+      <mat-option>None</mat-option>
+      <mat-option>Brasil</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>League</mat-label>
+    <mat-select [(value)]="selectedValue">
+      <mat-option>None</mat-option>
+      <mat-option>brasileirao</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Time</mat-label>
+    <mat-select [(value)]="selectedValue">
+      <mat-option>None</mat-option>
+      <mat-option>time</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+<div class="content">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Lista de jogadores</mat-card-title>
+      <mat-card-subtitle>Start</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-list>
+        <div mat-subheader>Jogadores</div>
+        <mat-list-item>
+          <div matListItemTitle>adonis</div>
+          <div matListItemLine>23</div>
+          <div matListItemLine>brasileiro</div>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <div mat-subheader>Resultados</div>
+        <mat-list-item>
+          <div matListItemTitle>jose</div>
+          <div matListItemLine>jao</div>
+        </mat-list-item>
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
+  <div class="players-list"></div>
+  <div class="formation"></div>
+  <div class="results">
+    <div class="total-games"></div>
+    <div class="total-wins"></div>
+    <div class="total-losses"></div>
+    <div class="total-draw"></div>
+  </div>
+  <div class="goals-chart"></div>
+</div>
+<p>You selected: {{ selectedValue }}</p>
