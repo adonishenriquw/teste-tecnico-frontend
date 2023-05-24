@@ -1,23 +1,42 @@
 <div class="container">
   <mat-form-field>
     <mat-label>Countries</mat-label>
-    <mat-select [(value)]="selectedValue">
+    <mat-select
+      [(ngModel)]="selectedCountryCode"
+      (ngModelChange)="listCountries()"
+    >
       <mat-option>None</mat-option>
-      <mat-option>Brasil</mat-option>
+      <mat-option *ngFor="let country of countries" [value]="country.code">
+        <img style="width: 24px" [src]="country.flag" [alt]="country.name" />
+        {{ country.name }}
+      </mat-option>
     </mat-select>
   </mat-form-field>
   <mat-form-field>
     <mat-label>League</mat-label>
-    <mat-select [(value)]="selectedValue">
+    <mat-select [(ngModel)]="selectedLeague" (ngModelChange)="listSeasons()">
       <mat-option>None</mat-option>
-      <mat-option>brasileirao</mat-option>
+      <mat-option *ngFor="let league of leagues" [value]="league">{{
+        league.league.name
+      }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Season</mat-label>
+    <mat-select [(ngModel)]="selectedSeason" (ngModelChange)="listTeams()">
+      <mat-option>None</mat-option>
+      <mat-option *ngFor="let season of seasons" [value]="season.year">{{
+        season.year
+      }}</mat-option>
     </mat-select>
   </mat-form-field>
   <mat-form-field>
     <mat-label>Time</mat-label>
-    <mat-select [(value)]="selectedValue">
+    <mat-select [(ngModel)]="selectedTeam" (ngModelChange)="listStatistic()">
       <mat-option>None</mat-option>
-      <mat-option>time</mat-option>
+      <mat-option *ngFor="let team of teams" [value]="team.team">{{
+        team.team.name
+      }}</mat-option>
     </mat-select>
   </mat-form-field>
 </div>
@@ -25,34 +44,96 @@
 <div class="content">
   <mat-card>
     <mat-card-header>
-      <mat-card-title>Lista de jogadores</mat-card-title>
-      <mat-card-subtitle>Start</mat-card-subtitle>
+      <mat-card-title>Jogadores</mat-card-title>
     </mat-card-header>
-    <mat-card-content>
+    <mat-card-content class="players">
       <mat-list>
-        <div mat-subheader>Jogadores</div>
-        <mat-list-item>
-          <div matListItemTitle>adonis</div>
-          <div matListItemLine>23</div>
-          <div matListItemLine>brasileiro</div>
-        </mat-list-item>
-        <mat-divider></mat-divider>
-        <div mat-subheader>Resultados</div>
-        <mat-list-item>
-          <div matListItemTitle>jose</div>
-          <div matListItemLine>jao</div>
+        <mat-list-item *ngFor="let item of players">
+          <div matListItemTitle>{{ item.player.name }}</div>
+          <div matListItemLine>{{ item.player.age }}</div>
+          <div matListItemLine>{{ item.player.nationality }}</div>
         </mat-list-item>
       </mat-list>
     </mat-card-content>
   </mat-card>
-  <div class="players-list"></div>
-  <div class="formation"></div>
-  <div class="results">
-    <div class="total-games"></div>
-    <div class="total-wins"></div>
-    <div class="total-losses"></div>
-    <div class="total-draw"></div>
-  </div>
-  <div class="goals-chart"></div>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Formação mais usada</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-list-item>
+        <div
+          matListItemTitle
+          *ngIf="statistics.lineups && statistics.lineups.length > 0"
+        >
+          {{ statistics.lineups[0].formation }}
+        </div>
+      </mat-list-item>
+    </mat-card-content>
+  </mat-card>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title> Resultados</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-list-item *ngIf="statistics.fixtures">
+        <div matListItemLine>
+          Total de jogos: {{ statistics.fixtures.played.total }}
+        </div>
+        <div matListItemLine>
+          Total de vitórias: {{ statistics.fixtures.wins.total }}
+        </div>
+        <div matListItemLine>
+          Total de derrotas: {{ statistics.fixtures.loses.total }}
+        </div>
+        <div matListItemLine>
+          Total de empates: {{ statistics.fixtures.draws.total }}
+        </div>
+      </mat-list-item>
+    </mat-card-content>
+  </mat-card>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title> Gols</mat-card-title>
+    </mat-card-header>
+    <mat-card-content *ngIf="statistics.goals">
+      <div matListItemLine>
+        Total de gols 0-15: {{ statistics.goals.for.minute["0-15"].total }} |
+        {{ statistics.goals.for.minute["0-15"].percentage || "0%" }}
+      </div>
+      <div matListItemLine>
+        Total de gols 16-30:
+        {{ statistics.goals.for.minute["16-30"].total }} |
+        {{ statistics.goals.for.minute["16-30"].percentage || "0%" }}
+      </div>
+      <div matListItemLine>
+        Total de gols 31-45:
+        {{ statistics.goals.for.minute["31-45"].total }} |
+        {{ statistics.goals.for.minute["31-45"].percentage || "0%" }}
+      </div>
+      <div matListItemLine>
+        Total de gols 46-60:
+        {{ statistics.goals.for.minute["46-60"].total }} |
+        {{ statistics.goals.for.minute["46-60"].percentage || "0%" }}
+      </div>
+      <div matListItemLine>
+        Total de gols 61-75: {{ statistics.goals.for.minute["61-75"].total }} |
+        {{ statistics.goals.for.minute["61-75"].percentage || "0%" }}
+      </div>
+      <div matListItemLine>
+        Total de gols 76-90: {{ statistics.goals.for.minute["76-90"].total }} |
+        {{ statistics.goals.for.minute["76-90"].percentage || "0%" }}
+      </div>
+      <div matListItemLine>
+        Total de gols 91-105:
+        {{ statistics.goals.for.minute["91-105"].total }} |
+        {{ statistics.goals.for.minute["91-105"].percentage || "0%" }}
+      </div>
+      <div matListItemLine>
+        Total de gols 106-120:
+        {{ statistics.goals.for.minute["106-120"].total }} |
+        {{ statistics.goals.for.minute["106-120"].percentage || "0%" }}
+      </div>
+    </mat-card-content>
+  </mat-card>
 </div>
-<p>You selected: {{ selectedValue }}</p>

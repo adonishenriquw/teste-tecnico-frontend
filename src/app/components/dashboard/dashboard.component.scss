@@ -3,9 +3,31 @@
   display: flex;
   justify-content: center;
   gap: 40px;
-  background-color:  #212121;
+  background-color: #212121;
 
-
+  mat-form-field {
+    mat-select {
+      mat-option {
+        img {
+          max-width: 32px;
+        }
+      }
+    }
+  }
+}
+.content {
+  mat-card {
+    .players {
+      height: 300px;
+      overflow-y: scroll;
+    }
+    mat-list {
+      mat-list-item {
+        background-color: #f0f0f0;
+        border: 1px solid #000;
+      }
+    }
+  }
 }
 @media (min-width: 834px) {
 }

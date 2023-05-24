@@ -5,11 +5,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
-import {MatTableModule} from '@angular/material/table';
-import {MatCardModule} from '@angular/material/card';
-import {MatListModule} from '@angular/material/list';
+import { MatTableModule } from '@angular/material/table';
+import { MatCardModule } from '@angular/material/card';
+import { MatListModule } from '@angular/material/list';
 import { HttpClientModule } from '@angular/common/http';
-
 
 @NgModule({
   declarations: [DashboardComponent],
@@ -22,7 +21,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatTableModule,
     MatCardModule,
     MatListModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   exports: [DashboardComponent],
 })
