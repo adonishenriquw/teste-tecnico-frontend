@@ -4,12 +4,13 @@
     <mat-card-content>
       <mat-form-field class="input-key">
         <mat-label>Api Key</mat-label>
-        <input matInput />
+        <input [(ngModel)]="apiKey" matInput />
       </mat-form-field>
-      <mat-card-actions  align="end">
-        <button mat-flat-button color="accent">Autenticar</button>
+      <mat-card-actions align="end">
+        <button (click)="validateKey(apiKey)" mat-flat-button color="accent">
+          Autenticar
+        </button>
       </mat-card-actions>
     </mat-card-content>
   </mat-card>
-
 </div>

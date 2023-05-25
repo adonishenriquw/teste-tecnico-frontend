@@ -7,51 +7,49 @@ import { SeasonsApiResponse } from '../models/seasons';
 import { TeamsApiResponse } from '../models/teams';
 import { StatisticsApiResponse } from '../models/statistics';
 import { PlayersApiResponse } from '../models/players';
+import { StorageService } from './storage.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiFootballService {
-  constructor(private httpClient: HttpClient) {}
-
+  constructor(
+    private httpClient: HttpClient,
+    private storage: StorageService
+  ) {}
   endpoint = 'https://api-football-v1.p.rapidapi.com/v3';
 
-  header = {
-    'X-RapidAPI-Key': 'ade395f426mshd0efa0c85ed8aa8p1e7e32jsn07d17897afb0',
-    'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com',
-  };
-
-  requestHeaders = {
-    headers: new HttpHeaders(this.header),
-  };
-
   getAllCountries(): Observable<CountriesApiResponse> {
+    const headers = this.createHeaders();
     return this.httpClient.get<CountriesApiResponse>(
       `${this.endpoint}/countries`,
-      this.requestHeaders
+      headers
     );
   }
   getAllLeaguesByCountryCode(
     countryCode: string
   ): Observable<LeaguesApiResponse> {
+    const headers = this.createHeaders();
     return this.httpClient.get<LeaguesApiResponse>(
       `${this.endpoint}/leagues?code=${countryCode}`,
-      this.requestHeaders
+      headers
     );
   }
   getAllSeasons(): Observable<SeasonsApiResponse> {
+    const headers = this.createHeaders();
     return this.httpClient.get<SeasonsApiResponse>(
       `${this.endpoint}/seasons`,
-      this.requestHeaders
+      headers
     );
   }
   getAllTeamsByLeagueAndSeason(
     leagueID: string,
     seasonYear: string
   ): Observable<TeamsApiResponse> {
+    const headers = this.createHeaders();
     return this.httpClient.get<TeamsApiResponse>(
       `${this.endpoint}/teams?league=${leagueID}&season=${seasonYear}`,
-      this.requestHeaders
+      headers
     );
   }
   getAllStatisticsByTeamsAndSeason(
@@ -59,18 +57,36 @@ export class ApiFootballService {
     seasonYear: string,
     leagueID: string
   ): Observable<StatisticsApiResponse> {
+    const headers = this.createHeaders();
     return this.httpClient.get<StatisticsApiResponse>(
       `${this.endpoint}/teams/statistics?league=${leagueID}&team=${teamID}&season=${seasonYear}`,
-      this.requestHeaders
+      headers
     );
   }
   getPlayersByTeamAndSeason(
     teamID: string,
     seasonYear: string
   ): Observable<PlayersApiResponse> {
+    const headers = this.createHeaders();
     return this.httpClient.get<PlayersApiResponse>(
       `${this.endpoint}/players?season=${seasonYear}&team=${teamID}`,
-      this.requestHeaders
+      headers
     );
+  }
+
+  createHeaders(apiKey?: string) {
+    let header = {
+      'X-RapidAPI-Key': apiKey || (this.storage.getApiKey() as string),
+      'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com',
+    };
+
+    return {
+      headers: new HttpHeaders(header),
+    };
+  }
+
+  validadeApiKey(apiKey: string) {
+    const headers = this.createHeaders(apiKey);
+    return this.httpClient.get<any>(`${this.endpoint}/countries`, headers);
   }
 }
