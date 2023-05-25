@@ -35,6 +35,7 @@ export class AuthenticationComponent {
       (err) => {
         this.authorized = false;
         this.storage.setIsValid('false');
+        window.alert('Não foi possível validar sua ApiKey');
       }
     );
   }
