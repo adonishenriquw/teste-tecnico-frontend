@@ -48,10 +48,12 @@
     </mat-card-header>
     <mat-card-content class="players">
       <mat-list>
-        <mat-list-item *ngFor="let item of players">
-          <div matListItemTitle>{{ item.player.name }}</div>
-          <div matListItemLine>{{ item.player.age }}</div>
-          <div matListItemLine>{{ item.player.nationality }}</div>
+        <mat-list-item class="totalplayer" *ngFor="let item of players">
+          <div class="playerName" matListItemTitle>{{ item.player.name }}</div>
+          <div class="playerAge" matListItemLine>{{ item.player.age }}</div>
+          <div class="playerNationality" matListItemLine>
+            {{ item.player.nationality }}
+          </div>
         </mat-list-item>
       </mat-list>
     </mat-card-content>
@@ -61,9 +63,9 @@
       <mat-card-title>Formação mais usada</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <mat-list-item>
+      <mat-list-item class="lineupsAndResultsAndGoals">
         <div
-          matListItemTitle
+          matListItemLine
           *ngIf="statistics.lineups && statistics.lineups.length > 0"
         >
           {{ statistics.lineups[0].formation }}
@@ -76,7 +78,10 @@
       <mat-card-title> Resultados</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <mat-list-item *ngIf="statistics.fixtures">
+      <mat-list-item
+        class="lineupsAndResultsAndGoals"
+        *ngIf="statistics.fixtures"
+      >
         <div matListItemLine>
           Total de jogos: {{ statistics.fixtures.played.total }}
         </div>
@@ -97,43 +102,54 @@
       <mat-card-title> Gols</mat-card-title>
     </mat-card-header>
     <mat-card-content *ngIf="statistics.goals">
-      <div matListItemLine>
+      <div matListItemLine class="goals">
         Total de gols 0-15: {{ statistics.goals.for.minute["0-15"].total }} |
         {{ statistics.goals.for.minute["0-15"].percentage || "0%" }}
       </div>
-      <div matListItemLine>
+      <div matListItemLine class="goals">
         Total de gols 16-30:
         {{ statistics.goals.for.minute["16-30"].total }} |
         {{ statistics.goals.for.minute["16-30"].percentage || "0%" }}
       </div>
-      <div matListItemLine>
+      <div matListItemLine class="goals">
         Total de gols 31-45:
         {{ statistics.goals.for.minute["31-45"].total }} |
         {{ statistics.goals.for.minute["31-45"].percentage || "0%" }}
       </div>
-      <div matListItemLine>
+      <div matListItemLine class="goals">
         Total de gols 46-60:
         {{ statistics.goals.for.minute["46-60"].total }} |
         {{ statistics.goals.for.minute["46-60"].percentage || "0%" }}
       </div>
-      <div matListItemLine>
+      <div matListItemLine class="goals">
         Total de gols 61-75: {{ statistics.goals.for.minute["61-75"].total }} |
         {{ statistics.goals.for.minute["61-75"].percentage || "0%" }}
       </div>
-      <div matListItemLine>
+      <div matListItemLine class="goals">
         Total de gols 76-90: {{ statistics.goals.for.minute["76-90"].total }} |
         {{ statistics.goals.for.minute["76-90"].percentage || "0%" }}
       </div>
-      <div matListItemLine>
+      <div matListItemLine class="goals">
         Total de gols 91-105:
         {{ statistics.goals.for.minute["91-105"].total }} |
         {{ statistics.goals.for.minute["91-105"].percentage || "0%" }}
       </div>
-      <div matListItemLine>
+      <div matListItemLine class="goals">
         Total de gols 106-120:
         {{ statistics.goals.for.minute["106-120"].total }} |
         {{ statistics.goals.for.minute["106-120"].percentage || "0%" }}
       </div>
+    </mat-card-content>
+    <mat-card-content *ngIf="goals">
+      <canvas
+        baseChart
+        class="chart"
+        [data]="barChartData"
+        [options]="barChartOptions"
+        [plugins]="barChartPlugins"
+        [type]="barChartType"
+      >
+      </canvas>
     </mat-card-content>
   </mat-card>
 </div>

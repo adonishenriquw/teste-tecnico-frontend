@@ -17,14 +17,53 @@
 }
 .content {
   mat-card {
+    width: 100vw;
+    padding: 16px;
     .players {
       height: 300px;
       overflow-y: scroll;
     }
     mat-list {
+      .totalplayer {
+        background-color: #f1f1f1;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        min-height: 110px;
+        padding-bottom: 10px;
+        .playerName {
+          font-size: 18px;
+          font-weight: bold;
+          padding-bottom: 10px;
+        }
+        .playerAge {
+          font-size: 18px;
+          font-weight: bold;
+          padding-bottom: 10px;
+        }
+        .playerNationality {
+          font-size: 18px;
+          font-weight: bold;
+        }
+      }
+
       mat-list-item {
         background-color: #f0f0f0;
         border: 1px solid #000;
+      }
+    }
+    mat-card-content {
+      width: 100%;
+      padding: 0;
+      .lineupsAndResultsAndGoals {
+        margin-top: 10px;
+        font-size: 18px;
+        font-weight: 500;
+      }
+      .goals {
+        margin-top: 10px;
+        font-size: 18px;
+        font-weight: 500;
+        padding-left: 16px;
       }
     }
   }

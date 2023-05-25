@@ -9,6 +9,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import { HttpClientModule } from '@angular/common/http';
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [DashboardComponent],
@@ -22,6 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatCardModule,
     MatListModule,
     HttpClientModule,
+    NgChartsModule,
   ],
   exports: [DashboardComponent],
 })
