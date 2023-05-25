@@ -80,7 +80,6 @@ export class DashboardComponent {
         this.statistics = res.response;
         this.drawChart(this.statistics.goals?.for.minute);
         this.goals = true;
-        console.log(this.statistics);
       });
   }
   getPlayers(teamID: string, seasonYear: string) {
