@@ -1,27 +1,47 @@
-# MeuTime
+# Meu Time - Projeto Angular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.1.
+Bem-vindo ao projeto "Meu Time"! Este é um projeto Angular que permite visualizar informações sobre seu time de futebol favorito. Esta aplicação exibe informações sobre os jogadores, formação mais utilizada, resultados dos jogos recentes e um gráfico de gols marcados em cada intervalo de tempo, referente ao time e temporada selecionados.
 
-## Development server
+## Instruções de Instalação
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Siga as instruções abaixo para iniciar o projeto em sua máquina local.
 
-## Code scaffolding
+### Pré-requisitos
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Certifique-se de ter os seguintes softwares instalados em sua máquina:
 
-## Build
+- Node.js (versão 12 ou superior)
+- Angular CLI (versão 12 ou superior)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### Passos para Instalação
 
-## Running unit tests
+1. Clone este repositório para sua máquina local usando o seguinte comando:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- git clone https://github.com/adonishenriquw/teste-tecnico-frontend.git
 
-## Running end-to-end tests
+2. Acesse o diretório do projeto:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+- cd teste-tecnico-frontend
 
-## Further help
+3. Instale as dependências do projeto utilizando o npm (ou yarn):
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- npm install
+
+4. Após a conclusão da instalação, inicie o servidor de desenvolvimento com o seguinte comando:
+
+- ng serve
+
+5. Aguarde até que a compilação seja concluída e o servidor esteja pronto. Você verá uma mensagem como esta:
+
+- ** Angular Live Development Server is listening on localhost:4200, open your browser on http://localhost:4200/ **
+
+6. Abra o seu navegador e acesse `http://localhost:4200/`. O aplicativo "Meu Time" será carregado e você poderá começar a utilizá-lo.
+
+## Funcionalidades
+
+O projeto "Meu Time" possui as seguintes funcionalidades principais:
+
+- Visualizar informações sobre os jogadores do time.
+- Ver a formação mais utilizada pelo time.
+- Visualizar os resultados dos jogos recentes do time.
+- Exibir um gráfico de gols marcados em cada intervalo de tempo, referente ao time e temporada selecionados.
